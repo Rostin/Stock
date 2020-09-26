@@ -16,7 +16,9 @@ class App extends React.Component {
       entryPrice: 0,
       targetPrice: 0,
       return: 0,
-      money: 0
+      money: 0,
+      potentialProfit: 0,
+      potentialLoss: 0
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -47,7 +49,10 @@ class App extends React.Component {
       ["targetPrice"]: ((this.state.entryPrice - value) * this.state.returnriskRatio + parseFloat(this.state.entryPrice)),
       ["profitPerShare"]: ((this.state.entryPrice - value) * this.state.returnriskRatio + parseFloat(this.state.entryPrice)) - this.state.entryPrice,
       ["return"]: this.state.riskRatio * this.state.returnriskRatio,
-      ["money"]: this.state.entryPrice *  ((this.state.capital * this.state.riskRatio / 100.00)  / (this.state.entryPrice - value))
+      ["money"]: this.state.entryPrice *  ((this.state.capital * this.state.riskRatio / 100.00)  / (this.state.entryPrice - value)),
+      ["potentialProfit"]: ((this.state.capital * this.state.riskRatio / 100.00)  / (this.state.entryPrice - value))* (((this.state.entryPrice - value) * this.state.returnriskRatio + parseFloat(this.state.entryPrice)) - this.state.entryPrice),
+      ["potentialLoss"]: ((this.state.capital * this.state.riskRatio / 100.00)  / (this.state.entryPrice - value))* (this.state.entryPrice - value)
+
     });
   }
 
@@ -63,7 +68,9 @@ class App extends React.Component {
       ["targetPrice"]: ((value - this.state.stopLossPrice) * this.state.returnriskRatio + parseFloat(value)),
       ["profitPerShare"]: ((value - this.state.stopLossPrice) * this.state.returnriskRatio + parseFloat(value)) - value,
       ["return"]: this.state.riskRatio * this.state.returnriskRatio,
-      ["money"]: value *  ((this.state.capital * this.state.riskRatio / 100.00)  / (value - this.state.stopLossPrice))
+      ["money"]: value *  ((this.state.capital * this.state.riskRatio / 100.00)  / (value - this.state.stopLossPrice)),
+      ["potentialProfit"]: ((this.state.capital * this.state.riskRatio / 100.00)  / (value - this.state.stopLossPrice)) * (((value - this.state.stopLossPrice) * this.state.returnriskRatio + parseFloat(value)) - value),
+      ["potentialLoss"]: ((this.state.capital * this.state.riskRatio / 100.00)  / (value - this.state.stopLossPrice)) * (value - this.state.stopLossPrice)
     });
   }
 
@@ -189,6 +196,25 @@ class App extends React.Component {
             name="return"
             value={this.state.return} 
             readOnly/>
+        </label>
+
+        <br />
+        <label>
+          <span>Potential Profit:</span>
+          <input
+            name="potentialProfit"
+            type="number"
+            value={this.state.potentialProfit}
+            readOnly />
+        </label>
+        <br />
+        <label>
+          <span>Potential Loss:</span>
+          <input
+            name="potentialLoss"
+            type="number"
+            value={this.state.potentialLoss}
+            readOnly />
         </label>
 
       </form>
