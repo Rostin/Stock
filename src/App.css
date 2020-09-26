@@ -51,3 +51,7 @@ label span
 input:read-only { 
   background-color: red;
 }
+input { 
+  text-align: center;
+  font-weight: bold;
+}
