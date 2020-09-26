@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+label
+{
+    display: block;
+}
+
+label span
+{
+    display: inline-block;
+    text-align: right;
+    width: 200px;
+}
+input:read-only { 
+  background-color: red;
+}
