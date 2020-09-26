@@ -200,19 +200,19 @@ class App extends React.Component {
 
         <br />
         <label>
+          <span></span>
           <span>Potential Profit:</span>
           <input
             name="potentialProfit"
-            type="number"
             value={this.state.potentialProfit}
             readOnly />
         </label>
         <br />
         <label>
+          <span></span>
           <span>Potential Loss:</span>
           <input
             name="potentialLoss"
-            type="number"
             value={this.state.potentialLoss}
             readOnly />
         </label>
